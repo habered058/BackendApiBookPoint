@@ -15,3 +15,40 @@ php artisan make:migration create_availability_table --create=availability
 
 php artisan migrate:refresh
 
+
+Paso 1: Instalar el paquete JWT
+    composer require tymon/jwt-auth
+
+Paso 2: Publicar la configuración
+    php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"
+
+Paso 3: Generar la clave secreta
+    php artisan jwt:secret
+
+Paso 4: Configurar el modelo de usuario
+
+    use Tymon\JWTAuth\Contracts\JWTSubject;
+
+    class User extends Authenticatable implements JWTSubject
+    {
+        // ...
+
+        public function getJWTIdentifier()
+        {
+            return $this->getKey();
+        }
+
+        public function getJWTCustomClaims()
+        {
+            return [];
+        }
+    }
+
+Paso 5: Configurar el controlador de autenticación
+    php artisan make:controller AuthController
+
+
+php artisan route:list
+
+
+
