@@ -50,5 +50,9 @@ Paso 5: Configurar el controlador de autenticación
 
 php artisan route:list
 
+php artisan make:model Reservation
+php artisan make:model Space
 
 
+php artisan make:controller SpaceController
+php artisan make:controller ReservationController
